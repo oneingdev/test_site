@@ -204,4 +204,39 @@ section { padding: 120px 48px; }
 @keyframes expandLine {
   from { transform: scaleX(0); } to { transform: scaleX(1); }
 }
+
+/* ── 반응형 공통 ── */
+@media (max-width: 1024px) {
+  section { padding: 100px 40px; }
+  .section-num { font-size: 56px; }
+  .section-title { font-size: 36px; }
+}
+
+@media (max-width: 768px) {
+  section { padding: 80px 24px; }
+  .section-header { gap: 16px; margin-bottom: 48px; }
+  .section-num { font-size: 44px; }
+  .section-title { font-size: 28px; }
+  .site-footer { padding: 24px; flex-direction: column; gap: 8px; text-align: center; }
+  .cursor, .cursor-ring { display: none; }
+  body { cursor: auto; }
+}
+
+
+/* ── 반응형 공통 ── */
+@media (max-width: 1024px) {
+  section { padding: 100px 40px; }
+  .section-num { font-size: 56px; }
+  .section-title { font-size: 36px; }
+}
+
+@media (max-width: 768px) {
+  section { padding: 80px 24px; }
+  .section-header { gap: 16px; margin-bottom: 48px; }
+  .section-num { font-size: 44px; }
+  .section-title { font-size: 28px; }
+  .site-footer { padding: 24px; flex-direction: column; gap: 8px; text-align: center; }
+  .cursor, .cursor-ring { display: none; }
+  body { cursor: auto; }
+}
 </style>

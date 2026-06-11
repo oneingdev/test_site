@@ -23,18 +23,14 @@
 </template>
 
 <script setup>
-defineProps({
-  artist: Object,
-  heroTiles: Array,
-})
+defineProps({ artist: Object, heroTiles: Array })
 </script>
 
 <style scoped>
 #hero {
   height: 100vh; display: grid; grid-template-columns: 1fr 1fr;
   position: relative; overflow: hidden;
-  /* ✅ 흰색 nav 높이만큼 상단 여백 */
-  padding-top: 0;
+  padding-top: 64px; /* nav 높이 */
 }
 .hero-left {
   display: flex; flex-direction: column; justify-content: flex-end;
@@ -47,7 +43,7 @@ defineProps({
 }
 .hero-name {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(52px, 7vw, 96px); font-weight: 300;
+  font-size: clamp(48px, 6vw, 96px); font-weight: 300;
   line-height: 0.95; letter-spacing: -0.02em; margin-bottom: 32px;
   animation: fadeUp 1.2s ease forwards;
 }
@@ -58,7 +54,7 @@ defineProps({
   animation: fadeUp 1.2s 0.2s ease forwards; opacity: 0;
 }
 .hero-scroll {
-  margin-top: 48px; display: flex; align-items: center; gap: 16px;
+  margin-top: 40px; display: flex; align-items: center; gap: 16px;
   font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--warm-gray);
   animation: fadeUp 1.2s 0.4s ease forwards; opacity: 0;
 }
@@ -91,4 +87,21 @@ defineProps({
 .t2 { background: linear-gradient(135deg, #1a1a2e, #2d2d44); }
 .t3 { background: linear-gradient(135deg, #1e2a1e, #2a3d2a); }
 .t4 { background: linear-gradient(135deg, #2a1a1a, #3d2a2a); }
+
+/* 태블릿 */
+@media (max-width: 1024px) {
+  #hero { grid-template-columns: 1fr; grid-template-rows: 1fr 40vh; }
+  .hero-left { padding: 60px 40px 48px; justify-content: flex-end; }
+  .hero-right { height: 100%; }
+}
+
+/* 모바일 */
+@media (max-width: 768px) {
+  #hero { grid-template-columns: 1fr; grid-template-rows: 1fr 35vw; height: 100svh; }
+  .hero-left { padding: 40px 24px 36px; }
+  .hero-name { font-size: clamp(40px, 12vw, 64px); margin-bottom: 20px; }
+  .hero-desc { font-size: 11px; max-width: 100%; }
+  .hero-scroll { margin-top: 24px; }
+  .hero-artwork { grid-template-columns: repeat(4, 1fr); grid-template-rows: 1fr; }
+}
 </style>

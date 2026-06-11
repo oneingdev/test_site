@@ -12,7 +12,6 @@
         <div class="portrait-frame">
           <div class="portrait-placeholder">작가 사진</div>
         </div>
-        <!-- ✅ 오늘 기준 자동 계산된 경력 연차 표시 -->
         <div class="portrait-caption">{{ artist.name }} · Suji Oh · {{ careerYears }}년 활동</div>
       </div>
       <div class="about-content">
@@ -31,16 +30,8 @@
 
 <script setup>
 import { computed } from 'vue'
-
-const props = defineProps({
-  artist: Object,
-  stats: Array,
-})
-
-// ✅ 오늘 날짜 기준으로 경력 연차 자동 계산
-const careerYears = computed(() => {
-  return new Date().getFullYear() - props.artist.careerStartYear
-})
+const props = defineProps({ artist: Object, stats: Array })
+const careerYears = computed(() => new Date().getFullYear() - props.artist.careerStartYear)
 </script>
 
 <style scoped>
@@ -48,8 +39,7 @@ const careerYears = computed(() => {
 .about-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 80px; align-items: start; }
 
 .portrait-frame {
-  width: 100%; aspect-ratio: 3/4; background: var(--ink);
-  position: relative; overflow: hidden;
+  width: 100%; aspect-ratio: 3/4; background: var(--ink); position: relative; overflow: hidden;
 }
 .portrait-frame::before {
   content: ''; position: absolute; inset: -2px;
@@ -65,18 +55,15 @@ const careerYears = computed(() => {
   margin-top: 16px; font-size: 10px; letter-spacing: 0.2em;
   text-transform: uppercase; color: var(--warm-gray); text-align: center;
 }
-
 .about-text {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 22px; font-weight: 300;
-  line-height: 1.7; color: var(--ink); margin-bottom: 32px;
+  font-size: 22px; font-weight: 300; line-height: 1.7; color: var(--ink); margin-bottom: 32px;
 }
 .about-text :deep(em) { font-style: italic; color: var(--gold); }
 .about-sub {
   font-size: 12px; line-height: 1.9;
   color: var(--warm-gray); letter-spacing: 0.03em; margin-bottom: 48px;
 }
-
 .about-stats {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
   border-top: 1px solid var(--paper); padding-top: 32px;
@@ -88,5 +75,21 @@ const careerYears = computed(() => {
 .stat-label {
   font-size: 10px; letter-spacing: 0.2em;
   text-transform: uppercase; color: var(--warm-gray); margin-top: 8px;
+}
+
+/* 태블릿 */
+@media (max-width: 1024px) {
+  .about-grid { grid-template-columns: 1fr 1.5fr; gap: 48px; }
+  .about-text { font-size: 20px; }
+}
+
+/* 모바일 */
+@media (max-width: 768px) {
+  #about { padding: 80px 24px; }
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .about-portrait { max-width: 240px; margin: 0 auto; }
+  .about-text { font-size: 18px; }
+  .about-stats { gap: 20px; }
+  .stat-num { font-size: 36px; }
 }
 </style>

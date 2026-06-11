@@ -17,7 +17,6 @@
           <div class="award-title">{{ award.title }}</div>
           <div class="award-org">{{ award.org }}</div>
         </div>
-        <!-- 트로피 아이콘 -->
         <div class="award-icon">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M6 9H4a2 2 0 0 1-2-2V5h4"/>
@@ -33,9 +32,7 @@
 </template>
 
 <script setup>
-defineProps({
-  awards: Array,
-})
+defineProps({ awards: Array })
 </script>
 
 <style scoped>
@@ -49,25 +46,17 @@ defineProps({
 }
 
 .awards-list { max-width: 800px; }
-
 .award-item {
-  display: grid;
-  grid-template-columns: 80px 1fr 40px;
-  gap: 32px;
-  padding: 28px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  align-items: center;
-  position: relative;
-  transition: all 0.3s;
+  display: grid; grid-template-columns: 80px 1fr 40px;
+  gap: 32px; padding: 28px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  align-items: center; position: relative; transition: all 0.3s;
 }
 .award-item::before {
-  content: '';
-  position: absolute;
+  content: ''; position: absolute;
   left: -48px; top: 0; bottom: 0; width: 2px;
-  background: var(--gold);
-  transform: scaleY(0);
-  transition: transform 0.3s ease;
-  transform-origin: top;
+  background: var(--gold); transform: scaleY(0);
+  transition: transform 0.3s ease; transform-origin: top;
 }
 .award-item:hover::before { transform: scaleY(1); }
 .award-item:hover { padding-left: 16px; }
@@ -75,23 +64,38 @@ defineProps({
 
 .award-year {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 24px; font-weight: 300;
-  color: var(--gold); line-height: 1;
+  font-size: 24px; font-weight: 300; color: var(--gold); line-height: 1;
 }
-
 .award-title {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 20px; font-weight: 300;
-  color: var(--cream); margin-bottom: 4px;
+  font-size: 20px; font-weight: 300; color: var(--cream); margin-bottom: 4px;
 }
 .award-org {
   font-size: 10px; letter-spacing: 0.15em;
   text-transform: uppercase; color: var(--warm-gray);
 }
-
 .award-icon {
-  color: rgba(255, 255, 255, 0.15);
-  transition: color 0.3s;
+  color: rgba(255,255,255,0.15); transition: color 0.3s;
   display: flex; align-items: center; justify-content: flex-end;
+}
+
+/* 태블릿 */
+@media (max-width: 1024px) {
+  .awards-list { max-width: 100%; }
+  .award-item::before { left: -40px; }
+}
+
+/* 모바일 */
+@media (max-width: 768px) {
+  #awards { padding: 80px 24px; }
+  .awards-count { margin-top: -32px; }
+  .award-item {
+    grid-template-columns: 60px 1fr 28px;
+    gap: 16px; padding: 22px 0;
+  }
+  .award-item::before { display: none; }
+  .award-item:hover { padding-left: 0; }
+  .award-year { font-size: 18px; }
+  .award-title { font-size: 16px; }
 }
 </style>

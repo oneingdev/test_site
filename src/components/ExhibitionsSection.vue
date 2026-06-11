@@ -8,7 +8,6 @@
       </div>
     </div>
 
-    <!-- ✅ exhibitions 배열 길이가 자동으로 카운트에 반영됨 -->
     <div class="ex-count fade-in-up">총 {{ exhibitions.length }}회 전시</div>
 
     <div class="exhibitions-list">
@@ -25,9 +24,7 @@
 </template>
 
 <script setup>
-defineProps({
-  exhibitions: Array,
-})
+defineProps({ exhibitions: Array })
 </script>
 
 <style scoped>
@@ -41,7 +38,7 @@ defineProps({
 .exhibitions-list { max-width: 800px; }
 .exhibition-item {
   display: grid; grid-template-columns: 80px 1fr; gap: 32px;
-  padding: 36px 0; border-bottom: 1px solid rgba(26,22,18,0.1);
+  padding: 32px 0; border-bottom: 1px solid rgba(26,22,18,0.1);
   position: relative; transition: all 0.3s;
 }
 .exhibition-item::before {
@@ -55,15 +52,35 @@ defineProps({
 
 .ex-year {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 28px; font-weight: 300; color: var(--gold); line-height: 1; padding-top: 4px;
+  font-size: 26px; font-weight: 300; color: var(--gold); line-height: 1; padding-top: 4px;
 }
-.ex-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 300; margin-bottom: 6px; }
+.ex-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; margin-bottom: 6px; }
 .ex-venue {
-  font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+  font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
   color: var(--warm-gray); margin-bottom: 8px;
 }
 .ex-type {
   display: inline-block; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
   border: 1px solid var(--gold); color: var(--gold); padding: 3px 10px;
+}
+
+/* 태블릿 */
+@media (max-width: 1024px) {
+  .exhibitions-list { max-width: 100%; }
+  .exhibition-item::before { left: -40px; }
+}
+
+/* 모바일 */
+@media (max-width: 768px) {
+  #exhibitions { padding: 80px 24px; }
+  .ex-count { margin-top: -32px; }
+  .exhibition-item {
+    grid-template-columns: 60px 1fr;
+    gap: 20px; padding: 24px 0;
+  }
+  .exhibition-item::before { display: none; }
+  .exhibition-item:hover { padding-left: 0; }
+  .ex-year { font-size: 20px; }
+  .ex-title { font-size: 16px; }
 }
 </style>
